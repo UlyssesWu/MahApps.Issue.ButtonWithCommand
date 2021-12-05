@@ -1,0 +1,35 @@
+﻿<Window x:Class="MahAppsTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MahAppsTest"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="600">
+    <Window.Resources>
+        <RoutedUICommand x:Key="QuickLoadCommand" Text="Quick Load" />
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource QuickLoadCommand}"
+                        Executed="QuickLoad"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ToolBar Grid.Row="0">
+            <Button Command="{StaticResource QuickLoadCommand}" Content="Test"></Button>
+            <mah:ToggleSwitch x:Name="ThemeToggle" MinWidth="100"
+                                   OffContent="Off" OnContent="On"  Toggled="ThemeToggled" VerticalAlignment="Center" Padding="10,0,0,0"/>
+        </ToolBar>
+        <DataGrid x:Name="CharacterDataGrid" Grid.Row="1" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Character" Binding="{Binding Name}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Gender" Binding="{Binding Gender}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Desc}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
